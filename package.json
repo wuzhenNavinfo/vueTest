@@ -1,0 +1,20 @@
+{
+  "name": "testvue",
+  "version": "1.0.0",
+  "description": "this is a test prject",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.4.2"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "testvue"
+  ],
+  "author": "wuzhen",
+  "license": "ISC"
+}
