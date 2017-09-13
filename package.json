@@ -7,6 +7,7 @@
     "vue": "^2.4.2"
   },
   "devDependencies": {
+    "gulp-eslint": "^4.0.0",
     "jsdoc": "^3.5.4"
   },
   "scripts": {
