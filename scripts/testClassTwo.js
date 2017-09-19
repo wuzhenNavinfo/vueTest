@@ -1,5 +1,5 @@
 //定义类
-class Point {
+class StringLine {
     constructor(x, y) {
       this.x = x;
       this.y = y;
@@ -9,13 +9,13 @@ class Point {
       return '(' + this.x + ', ' + this.y + ')';
     }
 
+   
     /**
-     *  颠三倒四
-     * @returns [] 数组
-     * @memberof Point 点
+     * 这是一个划线的方法
+     * 
+     * @memberof StringLine
      */
-    test() {
-        console.info('test');
-        return [];
+    drawLine() {
+        console.info('drawLine');
     }
 }
