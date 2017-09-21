@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Hello from '@/components/Hello'  /* 英文Hello.vue模版，并赋值给变量Hello,这里是“@”相当于“../” */
-import Chart from '@/components/Chart'
+import BarChart from '@/components/BarChart'
+import LineChart from '@/components/LineChart'
 
 Vue.use(Router)
 
@@ -11,12 +12,17 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello  /* 注册Hello组件 */
+      component: Hello   /* 注册Hello组件 */
     },
     {
-      path: '/chart',
-      name: 'Chart',
-      component: Chart  /* 注册Test组件 */
+      path: '/barChart',
+      name: 'BarChart',
+      component: BarChart
+    },
+    {
+      path: '/LineChart',
+      name: 'LineChart',
+      component: LineChart
     }
   ]
 })
