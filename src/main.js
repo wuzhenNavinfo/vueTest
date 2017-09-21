@@ -10,6 +10,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
+  template: '<App/>', /* 给Vue实例初始一个App组件作为template 相当于默认组件 */
+  components: { App } /* 注册引入的组件App.vue */
 })
