@@ -83,7 +83,7 @@ export default {
                      }
                  },
                  barGap:'-100%', // 两个柱子重叠
-                 barCategoryGap:'70%', // 柱子之间的间距
+                 barCategoryGap:'80%', // 柱子之间的间距
                  data: dataShadow,
                  animation: false
              },{

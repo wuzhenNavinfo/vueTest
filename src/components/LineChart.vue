@@ -16,10 +16,29 @@ export default {
     return {
       msg: 'this is a Line Chart',
       chart: null,
-      legendData: ['蒸发量'],
-      seriesData: [27.0, 4.9, 70.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 65.4, 30.3],
-      xAxis: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-
+      legendData: [{ name:'用户轨迹点10250个', icon: 'roundRect'},
+        { name:'用户问题反馈220个', icon: 'roundRect'},
+        { name:'互联网信息4250个', icon: 'roundRect'}
+      ],
+      seriesData: [{
+          name:'用户轨迹点10250个',
+          type:'line',
+          smooth: true,
+          data:[120, 132, 101, 134, 90, 230, 210, 120, 132, 101, 134, 90]
+      },
+      {
+          name:'用户问题反馈220个',
+          type:'line',
+          smooth: true,
+          data:[220, 182, 191, 234, 290, 330, 310, 220, 182, 191, 234, 290]
+      },
+      {
+          name:'互联网信息4250个',
+          type:'line',
+          smooth: true,
+          data:[150, 232, 201, 154, 190, 330, 410, 150, 232, 201, 154, 190]
+      }],
+      xAxisData: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
     }
   },
   methods: {
@@ -48,20 +67,22 @@ export default {
               left: 20,
               right: 20,
               top: 0,
-              bottom:30
+              // bottom:30
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} : {c}"
+            title: {
+              text: '累积值',
+              left:20,
+              top: 20
             },
             legend: {
-                show:false,
-                x: 'center',
-                y: 'bottom',
+                orient: 'vertical',
+                right: 10,
+                top: 10,
+                itemWidth: 14,
                 data: this.legendData
             },
             xAxis: {
-                data: this.xAxis,
+                data: this.xAxisData,
                 boundaryGap: false, // 坐标轴两边不留空白
                 axisLine: {
                   show:false
@@ -73,36 +94,7 @@ export default {
             yAxis: {
                 show: false
             },
-            calculable: true,
-            series: [{    // For shadow
-                 type: 'bar',
-                 itemStyle: {
-                     normal: {
-                        color: 'rgba(255,255,255,0.15)',
-                        barBorderRadius:[5, 5, 0, 0]
-                     }
-                 },
-                 barGap:'-100%', // 两个柱子重叠
-                 barCategoryGap:'70%', // 柱子之间的间距
-                 data: dataShadow,
-                 animation: false
-             },{
-                name: '蒸发量',
-                type: 'bar',
-                itemStyle: {
-                  normal: {
-                    color: new echarts.graphic.LinearGradient( // 0,0,0,1表示从上到下渐变 0,0,1,0// 从左到右渐变
-                        0, 0, 0, 1,
-                        [
-                          {offset: 0.9, color: '#188df0'},
-                          {offset: 0, color: '#83baf3'}
-                        ]
-                    ),
-                    barBorderRadius:[5, 5, 0, 0]
-                  }
-                },
-                data: this.seriesData
-            }]
+            series: this.seriesData
         })
         this.chart.hideLoading()
     }
