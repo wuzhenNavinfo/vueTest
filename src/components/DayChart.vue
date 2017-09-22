@@ -21,12 +21,11 @@ export default {
          itemStyle: {
              normal: {
                 color: 'rgba(255,255,255,0.15)',
-                barBorderRadius:[5, 5, 0, 0]
+                barBorderRadius:[0, 5, 5, 0]
              }
          },
          barGap:'-100%', // 两个柱子重叠
          barCategoryGap:'80%', // 柱子之间的间距
-         // yAxisIndex: 0,
          data: [140, 140, 140, 140],
          animation: false
       },
@@ -41,7 +40,7 @@ export default {
                     {offset: 0, color: '#83baf3'}
                   ]
               ),
-              barBorderRadius:[5, 5, 0, 0]
+              barBorderRadius:[0, 5, 5, 0]
             }
           },
           // yAxisIndex: 0,

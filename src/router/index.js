@@ -5,6 +5,7 @@ import Hello from '@/components/Hello'  /* 英文Hello.vue模版，并赋值给�
 import BarChart from '@/components/BarChart'
 import LineChart from '@/components/LineChart'
 import DayChart from '@/components/DayChart'
+import MonthChart from '@/components/MonthChart'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/dayChart',
       name: 'DayChart',
       component: DayChart
+    },
+    {
+      path: '/monthChart',
+      name: 'MonthChart',
+      component: MonthChart
     }
   ]
 })

@@ -50,10 +50,6 @@ export default {
               top: 0,
               bottom:30
             },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} : {c}"
-            },
             legend: {
                 show:false,
                 x: 'center',

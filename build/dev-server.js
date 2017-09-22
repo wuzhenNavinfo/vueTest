@@ -21,6 +21,16 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+// ---- 接口begin ----
+var chartData = require('../chartData.json')
+var apiRoutes = express.Router()
+apiRoutes.get('/getChartData', function(req, res){
+  res.json({
+    data: chartData
+  })
+})
+app.use('/api', apiRoutes)
+// ---- 接口end ----
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
