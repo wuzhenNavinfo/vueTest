@@ -1,6 +1,7 @@
 <template>
   <div class="chart-content">
     <h1 style='text-align:center'>{{ msg }}</h1>
+    <!-- {{roadData}} -->
     <div id='myChartRoad'>
     </div>
   </div>
@@ -12,36 +13,39 @@ require('echarts/theme/dark');
 
 export default {
   name: 'test',
+  props: ['roadData'],
   data () {
     return {
       msg: 'this is a bar Chart',
       chart: null,
-      legendData: ['蒸发量'],
-      seriesData: [27.0, 4.9, 70.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 65.4, 30.3],
-      xAxis: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-
+      // seriesData: [27.0, 4.9, 70.0, 23.2, 25.5, 76.7, 135.6, 162.2, 32.6, 20.0, 65.4, 30.3],
+      // xAxis: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
     }
   },
   methods: {
     // 获取背景柱状图数组
-    shadowMax() {
+    shadowMax(seriesData) {
       var max = 0;
       var maxArr = [];
-      for (let i = 0; i < this.seriesData.length; i++) {
-        if (max < this.seriesData[i]) {
-          max = this.seriesData[i]
+      for (let i = 0; i < seriesData.length; i++) {
+        if (max < seriesData[i]) {
+          max = seriesData[i]
         }
       }
       max = Math.ceil(max) + 10;
-      this.seriesData.forEach(function (item, index, arr) {
+      seriesData.forEach(function (item, index, arr) {
         maxArr[index] = max;
       });
       return maxArr;
     },
     // 绘制表格
     drawGraph() {
-        this.chart = echarts.init(document.getElementById('myChartRoad'), 'dark')
-        let dataShadow = this.shadowMax();
+        let seriesDataTemp = this.roadData.seriesData
+        let xAxis = this.roadData.xAxis
+        if (!this.chart) {
+            this.chart = echarts.init(document.getElementById('myChartRoad'), 'dark')
+        }
+        let dataShadow = this.shadowMax(seriesDataTemp);
         this.chart.showLoading()
         this.chart.setOption({
             grid: {
@@ -50,14 +54,8 @@ export default {
               top: 0,
               bottom:30
             },
-            legend: {
-                show:false,
-                x: 'center',
-                y: 'bottom',
-                data: this.legendData
-            },
             xAxis: {
-                data: this.xAxis,
+                data: xAxis,
                 boundaryGap: false, // 坐标轴两边不留空白
                 axisLine: {
                   show:false
@@ -83,7 +81,7 @@ export default {
                  data: dataShadow,
                  animation: false
              },{
-                name: '蒸发量',
+                // name: '蒸发量',
                 type: 'bar',
                 itemStyle: {
                   normal: {
@@ -97,16 +95,20 @@ export default {
                     barBorderRadius:[5, 5, 0, 0]
                   }
                 },
-                data: this.seriesData
+                data: seriesDataTemp
             }]
         })
         this.chart.hideLoading()
     }
   },
-  mounted() {
-      // this.$nextTick(function() {
-          this.drawGraph()
-      // })
+  updated() {
+  },
+  watch: {
+    roadData: function () {
+          this.$nextTick(function() {
+              this.drawGraph()
+          })
+    }
   }
 }
 </script>
@@ -114,6 +116,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .chart-content{
+    float: left;
     background-color: #000;
     color: #FFF;
     width: 500px;
@@ -121,6 +124,6 @@ export default {
 }
 #myChartRoad {
     width: 500px;
-    height: 400px;
+    height: 300px;
 }
 </style>

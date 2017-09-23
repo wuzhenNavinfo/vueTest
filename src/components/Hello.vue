@@ -1,32 +1,45 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <bar-chart :roadData='charData.road'></bar-chart>
   </div>
 </template>
 
 <script>
+import BarChart from '@/components/BarChart'
+
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      charData: {
+        road: {
+            seriesData:[],
+            xAxis:[]
+        }
+      }
     }
+  },
+  components: {
+    BarChart
+  },
+  created () {
+    var that = this;
+    var index = 0;
+    setInterval(function () {
+        that.$http.get('/api/getChartData').then((data) => {
+            var t = data.body.data.road.seriesData[0];
+            if (index > 120) {
+                index = 0;
+            }
+            index = index + 20
+            data.body.data.road.seriesData[0] = data.body.data.road.seriesData[0] + index;
+            data.body.data.road.seriesData[4] = data.body.data.road.seriesData[4] + index;
+            data.body.data.road.seriesData[9] = data.body.data.road.seriesData[9] + index;
+            that.charData = data.body.data
+        })
+    },1000);
   }
 }
 </script>

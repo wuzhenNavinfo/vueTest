@@ -110,6 +110,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .chart-content{
+    float: left;
     background-color: #000;
     color: #FFF;
     width: 500px;

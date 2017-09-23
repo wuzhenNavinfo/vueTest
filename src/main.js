@@ -11,17 +11,8 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  created: function () {
-    this.getChartData()
-  },
-  methods: {
-    getChartData: function () {
-      this.$http.get('/api/getChartData').then((data) => {
-        this.charData = data.body.data
-      })
-    }
-  },
   router,
   template: '<App/>', /* 给Vue实例初始一个App组件作为template 相当于默认组件 */
   components: { App } /* 注册引入的组件App.vue */
 })
+
