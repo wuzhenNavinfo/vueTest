@@ -1,12 +1,14 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <bar-chart :roadData='charData.road'></bar-chart>
+    <bar-poi-chart :roadData='charData.road'></bar-poi-chart>
+    <bar-road-chart :roadData='charData.road'></bar-road-chart>
   </div>
 </template>
 
 <script>
-import BarChart from '@/components/BarChart'
+import BarRoadChart from '@/components/BarRoadChart'
+import BarPoiChart from '@/components/BarPoiChart'
 
 export default {
   name: 'hello',
@@ -22,7 +24,8 @@ export default {
     }
   },
   components: {
-    BarChart
+    BarRoadChart,
+    BarPoiChart
   },
   created () {
     var that = this;

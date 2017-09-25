@@ -2,7 +2,7 @@
   <div class="chart-content">
     <h1 style='text-align:center'>{{ msg }}</h1>
     <!-- {{roadData}} -->
-    <div id='myChartRoad'>
+    <div id='myBarRoadChart'>
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         let seriesDataTemp = this.roadData.seriesData
         let xAxis = this.roadData.xAxis
         if (!this.chart) {
-            this.chart = echarts.init(document.getElementById('myChartRoad'), 'dark')
+            this.chart = echarts.init(document.getElementById('myBarRoadChart'), 'dark')
         }
         let dataShadow = this.shadowMax(seriesDataTemp);
         this.chart.showLoading()
@@ -122,7 +122,7 @@ export default {
     width: 500px;
     display: inline-block;
 }
-#myChartRoad {
+#myBarRoadChart {
     width: 500px;
     height: 300px;
 }
