@@ -14,7 +14,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: {},
       charData: {
         road: {
             seriesData:[],
@@ -27,22 +27,35 @@ export default {
     BarRoadChart,
     BarPoiChart
   },
-  created () {
-    var that = this;
-    var index = 0;
-    setInterval(function () {
+  methods:{
+    getData: function () {
+      var that = this;
+      var index = 0;
+      setInterval(function () {
         that.$http.get('/api/getChartData').then((data) => {
-            var t = data.body.data.road.seriesData[0];
-            if (index > 120) {
-                index = 0;
-            }
-            index = index + 20
-            data.body.data.road.seriesData[0] = data.body.data.road.seriesData[0] + index;
-            data.body.data.road.seriesData[4] = data.body.data.road.seriesData[4] + index;
-            data.body.data.road.seriesData[9] = data.body.data.road.seriesData[9] + index;
-            that.charData = data.body.data
+          var t = data.body.data.road.seriesData[0];
+          if (index > 120) {
+              index = 0;
+          }
+          index = index + 20
+          data.body.data.road.seriesData[0] = data.body.data.road.seriesData[0] + index;
+          data.body.data.road.seriesData[4] = data.body.data.road.seriesData[4] + index;
+          data.body.data.road.seriesData[9] = data.body.data.road.seriesData[9] + index;
+          that.charData = data.body.data
+          that.msg = index;
         })
-    },1000);
+      },2000);
+    }
+  },
+  created () {
+    // this.getData()
+    let that = this;
+    let index = 0;
+    setInterval(function () {
+      index = index + 5;
+      that.msg = index;
+      console.info(that.msg);
+    },2000);
   }
 }
 </script>
