@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-
     <h1>{{ msg }}</h1>
     {{numValue | splitSymbol}}
     <input v-model.number="number" type="number" step="20">

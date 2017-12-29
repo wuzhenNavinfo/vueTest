@@ -2,7 +2,12 @@
   <div class='price-div'>
     <div v-for="item in valArr">
       <div v-if="item == ','" class='sign'>{{item}}</div>
-      <div v-else class='number'>{{item}}</div>
+      <div v-else class='number'>
+        <div>0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </div>
     </div>
     {{valArr}}
   </div>
